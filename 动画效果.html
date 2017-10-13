@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>导航动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 762px;
+            height: 280px;
+            margin: 100px auto;
+            border: 1px solid black;
+        }
+
+        ul {
+            margin: 5px;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            margin: 5px;
+            width: 178px;
+            height: 125px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        p {
+            background: url("images/bg.png") no-repeat 5px 2px rgba(0,0,0,0.5);
+            width: 178px;
+            height: 27px;
+            position: absolute;
+            bottom: -27px;
+            line-height: 20px;
+            text-align: center;
+            color: white;
+
+        }
+        span{
+            font-size: 14px;
+            display: inline-block;
+            height: 27px;
+            line-height: 27px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul></ul>
+</div>
+</body>
+<script src="../9.23小效果/jquery-3.2.1.js"></script>
+<script>
+    var date = [{
+        src: 'images/01.JPG',
+        text: '百度一下，你就知道'
+    }, {
+        src: 'images/02.JPG',
+        text: '过来嘛~剁手君'
+    }, {
+        src: 'images/03.JPG',
+        text: '浪里个浪'
+    }, {
+        src: 'images/04.JPG',
+        text: '网天下事，易人间情'
+    }, {
+        src: 'images/05.JPG',
+        text: '上搜狐, 知天下'
+    }, {
+        src: 'images/06.JPG',
+        text: '企鹅界的八卦手'
+    }, {
+        src: 'images/07.JPG',
+        text: '一酷一酷，斯国一'
+    }, {
+        src: 'images/08.JPG',
+        text: '奶茶妹妹家的'
+    }
+    ];
+    $(function () {
+        var str = '';
+        for (var i = 0; i < date.length; i++) {
+            str += ' <li>';
+            str += '<img src="' + date[i].src + '"/>';
+            str += ' <p><span>' + date[i].text + '</span></p>';
+            str += '</li>';
+
+        }
+        $('ul').html(str);
+
+        for (var j = 0; j < date.length; j++) {
+            $('p').eq(j).css('backgroundPositionY', j * -25);
+        }
+
+        $('li').hover(function () {
+            $('p',this).stop().animate({bottom: 0}, 100);
+        },function(){
+            $('p',this).stop().animate({bottom: -30}, 100);
+        })
+    });
+
+</script>
+</html>
